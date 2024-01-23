@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
         automaticallyImplyLeading: true,
         centerTitle: true,
         leading: Image.asset("assets/images/search.png"),
-        backgroundColor: Colors.black,
+        backgroundColor: const Color(0xff1E1E1E),
         title: const Text("Home",style: TextStyle(color: Colors.white),),
         actions: [
           Image.asset("assets/images/apple.png")
@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
           Container(
             width: double.infinity,
             height: double.infinity,
-            color: Colors.black,
+            color: const Color(0xff1E1E1E),
 
           ),
          Positioned(

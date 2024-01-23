@@ -1,3 +1,4 @@
+import 'package:chatbox/screen/widget/setting/widgets/add_friends.dart';
 import 'package:flutter/material.dart';
 
 class ContactsScreen extends StatelessWidget {
@@ -10,12 +11,17 @@ class ContactsScreen extends StatelessWidget {
           automaticallyImplyLeading: true,
           centerTitle: true,
           leading: Image.asset("assets/images/search.png"),
-          backgroundColor: Colors.black,
+          backgroundColor: const Color(0xff1E1E1E),
           title: const Text("Contact",style: TextStyle(color: Colors.white),),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 20),
-              child:  Image.asset("assets/images/user-add.png"),
+              child:  GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const AddFriend()));
+                },
+                child: Image.asset("assets/images/user-add.png"),
+              )
             )
           ],
         ),
@@ -24,7 +30,7 @@ class ContactsScreen extends StatelessWidget {
             Container(
               width: double.infinity,
               height: double.infinity,
-              color: Colors.black,
+              color: const Color(0xff1E1E1E),
 
             ),
             Positioned(

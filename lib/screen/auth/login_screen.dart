@@ -39,6 +39,7 @@ class _LoginFormState extends State<LoginForm> {
     authDartCubit = context.read<AuthDartCubit>();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -157,19 +158,26 @@ class _LoginFormState extends State<LoginForm> {
                                     authDartCubit.login(emailController.text,
                                         passwordController.text,
                                         (authUser) async {
+                                          print('Login with id ${authUser.user?.userId}');
                                       if (state is AuthSuccess) {
-                                        showDialog(context: context, builder: (BuildContext context){
-                                          return const Center(
-                                            child: CircularProgressIndicator(),
-                                          );
-                                        });
-                                        await Future.delayed(const Duration(seconds: 2));
-                                        Navigator.of(context,rootNavigator: true).pop();
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return const Center(
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              );
+                                            });
+                                        await Future.delayed(
+                                            const Duration(seconds: 2));
+                                        Navigator.of(context,
+                                                rootNavigator: true)
+                                            .pop();
                                         Navigator.pushReplacement(
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                const NavigationBottom()));
+                                                    const NavigationBottom()));
                                       }
                                     });
                                   }

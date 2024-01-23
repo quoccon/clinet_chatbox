@@ -25,11 +25,13 @@ class User {
     required this.username,
     required this.email,
     required this.image,
+    required this.password,
   });
 
   final String? userId;
   final String? username;
   final String? email;
+  final String? password;
   final dynamic image;
 
   factory User.fromJson(Map<String, dynamic> json){
@@ -38,6 +40,7 @@ class User {
       username: json["username"],
       email: json["email"],
       image: json["image"],
+      password: json['password'],
     );
   }
 

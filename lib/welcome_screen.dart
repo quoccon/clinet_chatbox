@@ -13,10 +13,11 @@ class WelcomeScreen extends StatelessWidget {
             width: double.infinity,
             height: double.infinity,
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(height: 30.0,),
                   Center(
                     child: Image.asset("assets/images/Logo-uihut.png"),
                   ),

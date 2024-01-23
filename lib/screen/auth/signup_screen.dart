@@ -1,4 +1,5 @@
 import 'package:chatbox/blocs/auth_cubit.dart';
+import 'package:chatbox/screen/auth/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -31,6 +32,7 @@ class _SignUpFormState extends State<SignUpForm> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmController = TextEditingController();
+
   // Biến để kiểm soát trạng thái của nút
   bool isSignUpEnabled = false;
   late File? _image;
@@ -140,7 +142,30 @@ class _SignUpFormState extends State<SignUpForm> {
                       onPressed: isSignUpEnabled
                           ? () {
                               // Xử lý khi nút được nhấn
-                        
+                              authDartCubit.signUp(
+                                  usernameController.text,
+                                  emailController.text,
+                                  passwordController.text,
+                                  confirmController.text, (authUser) async {
+                                if (state is AuthSuccess) {
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return const Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      });
+                                  await Future.delayed(
+                                      const Duration(seconds: 2));
+                                  Navigator.of(context, rootNavigator: true)
+                                      .pop();
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const LoginScreen()));
+                                }
+                              });
                             }
                           : null, // Vô hiệu hóa nút khi không có dữ liệu
                       style: ElevatedButton.styleFrom(
@@ -162,5 +187,4 @@ class _SignUpFormState extends State<SignUpForm> {
       },
     );
   }
-
 }

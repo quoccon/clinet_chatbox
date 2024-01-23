@@ -10,7 +10,7 @@ class CallScreen extends StatelessWidget {
           automaticallyImplyLeading: true,
           centerTitle: true,
           leading: Image.asset("assets/images/search.png"),
-          backgroundColor: Colors.black,
+          backgroundColor: const Color(0xff1E1E1E),
           title: const Text("Call",style: TextStyle(color: Colors.white),),
           actions: [
             Padding(
@@ -24,7 +24,7 @@ class CallScreen extends StatelessWidget {
             Container(
               width: double.infinity,
               height: double.infinity,
-              color: Colors.black,
+              color: const Color(0xff1E1E1E),
 
             ),
             Positioned(

@@ -10,19 +10,19 @@ class SettingScreen extends StatelessWidget {
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colors.white),
           centerTitle: true,
-          backgroundColor: Colors.black,
+          backgroundColor: const Color(0xff1E1E1E),
           title: const Text(
             "Setting",
             style: TextStyle(color: Colors.white),
           ),
-          actions: [Image.asset("assets/images/apple.png")],
+
         ),
         body: Stack(
           children: [
             Container(
               width: double.infinity,
               height: double.infinity,
-              color: Colors.black,
+              color: const Color(0xff1E1E1E),
             ),
             Positioned(
                 top: 50,
