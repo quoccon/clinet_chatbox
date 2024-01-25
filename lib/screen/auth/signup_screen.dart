@@ -32,8 +32,7 @@ class _SignUpFormState extends State<SignUpForm> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmController = TextEditingController();
-
-  // Biến để kiểm soát trạng thái của nút
+  String combinedErrorMessage ="";
   bool isSignUpEnabled = false;
   late File? _image;
   late AuthDartCubit authDartCubit;
@@ -49,6 +48,12 @@ class _SignUpFormState extends State<SignUpForm> {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthDartCubit, AuthDartState>(
       builder: (context, state) {
+
+        combinedErrorMessage = "";
+        if(authDartCubit.state is AuthError){
+          combinedErrorMessage += (authDartCubit.state as AuthError).error + "\n";
+        }
+
         return Scaffold(
             appBar: AppBar(
               centerTitle: true,
@@ -135,6 +140,16 @@ class _SignUpFormState extends State<SignUpForm> {
                       decoration: const InputDecoration(
                         labelText: 'Confirm Password',
                         border: OutlineInputBorder(),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Visibility(
+                      visible: isSignUpEnabled && (usernameController.text.isEmpty || emailController.text.isEmpty || passwordController.text.isEmpty || confirmController.text.isEmpty),
+                      child: Text(
+                         combinedErrorMessage,
+                        style: const TextStyle(color: Colors.red),
                       ),
                     ),
                     const SizedBox(height: 20),

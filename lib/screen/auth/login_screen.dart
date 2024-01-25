@@ -147,7 +147,10 @@ class _LoginFormState extends State<LoginForm> {
                         border: OutlineInputBorder(),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    // const SizedBox(height: 20),
+                    const Visibility(
+                      child: Text(""),
+                    ),
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,

@@ -69,7 +69,7 @@ class _NavigationBottomState extends State<NavigationBottom> {
       case 1:
         return const CallScreen();
       case 2:
-        return const ContactsScreen();
+        return const ContactScreen();
       case 3:
         return const SettingScreen();
       default:

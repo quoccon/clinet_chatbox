@@ -24,7 +24,15 @@ class AuthDartCubit extends Cubit<AuthDartState> {
     final email = emailController;
     final password = passwordController;
 
-    if(username.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty){
+    final emailRegExp = RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
+    if(!emailRegExp.hasMatch(email)){
+      emit(AuthError(error: "Định dạng email không đúng"));
+    }
+
+    if (username.isEmpty ||
+        email.isEmpty ||
+        password.isEmpty ||
+        confirmPassword.isEmpty) {
       emit(AuthError(error: "Vui lòng nhập đầy đủ thông tin"));
     }
     try {
@@ -48,7 +56,7 @@ class AuthDartCubit extends Cubit<AuthDartState> {
       Function(AuthUser) callback) async {
     final email = emailController;
     final password = passwordController;
-    if(email.isEmpty || password.isEmpty){
+    if (email.isEmpty || password.isEmpty) {
       emit(AuthError(error: "Vui lòng nhập đầy đủ thông tin"));
     }
     try {
@@ -62,11 +70,11 @@ class AuthDartCubit extends Cubit<AuthDartState> {
         // if(authUser.user?.email != email){
         //   print('Email không đúng');
         // }
-        if (password != authUser.user?.password) {
-          emit(AuthError(error: "Mật khẩu không trùng khớp"));
-        } else if (email != authUser.user?.email) {
-          emit(AuthError(error: "Email nhập không chính xác"));
-        }
+        // if (password != authUser.user?.password) {
+        //   emit(AuthError(error: "Mật khẩu không trùng khớp"));
+        // } else if (email != authUser.user?.email) {
+        //   emit(AuthError(error: "Email nhập không chính xác"));
+        // }
         print('idU == ${authUser.user?.userId}');
         _startWebSocketConnection(authUser.user?.userId);
       } else if (response.data == 404) {
